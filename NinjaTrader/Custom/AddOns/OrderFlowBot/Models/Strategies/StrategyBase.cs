@@ -71,7 +71,7 @@ namespace NinjaTrader.Custom.AddOns.OrderFlowBot.Models.Strategies
         }
 
         // Hook for derived classes to process data
-        protected virtual void OnDataPrepared()
+        public virtual void OnDataPrepared()
         {
             // Do nothing, can be overridden by concrete classes
         }
