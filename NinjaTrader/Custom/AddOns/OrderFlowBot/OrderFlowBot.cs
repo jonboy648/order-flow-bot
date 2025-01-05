@@ -279,6 +279,11 @@ namespace NinjaTrader.NinjaScript.Strategies
                 {
                     InitializeUIManager();
                 }
+
+                if (!BacktestEnabled)
+                {
+                    CheckATMStrategyLoaded();
+                }
             }
             else if (State == State.Realtime && Category != Category.Backtest)
             {
@@ -509,6 +514,21 @@ namespace NinjaTrader.NinjaScript.Strategies
         }
 
         #endregion
+
+        private void CheckATMStrategyLoaded()
+        {
+            string template = ChartControl?.OwnerChart?.ChartTrader?.AtmStrategy?.Template;
+
+            if (template == null)
+            {
+                System.Windows.MessageBox.Show(
+                    "ATM Strategy template is not loaded.",
+                    "Alert",
+                    System.Windows.MessageBoxButton.OK,
+                    System.Windows.MessageBoxImage.Warning
+                );
+            }
+        }
     }
 
     public class CumulativeDeltaSelectedPeriodConverter : TypeConverter

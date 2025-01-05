@@ -44,6 +44,9 @@ namespace NinjaTrader.Custom.AddOns.OrderFlowBot.Models.Strategies
             currentTechnicalLevels = GetCurrentTechnicalLevels();
             technicalLevelsList = GetGetTechnicalLevels();
 
+            // Allow the concrete class to process the data here
+            OnDataPrepared();
+
             if (IsValidSelectedLongDirection() && CheckLong())
             {
                 StrategyData.UpdateTriggeredDataProvider(
@@ -65,6 +68,12 @@ namespace NinjaTrader.Custom.AddOns.OrderFlowBot.Models.Strategies
             }
 
             return StrategyData;
+        }
+
+        // Hook for derived classes to process data
+        protected virtual void OnDataPrepared()
+        {
+            // Do nothing, can be overridden by concrete classes
         }
 
         protected IReadOnlyDataBar GetCurrentDataBar()
