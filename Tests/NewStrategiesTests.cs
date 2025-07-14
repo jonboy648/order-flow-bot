@@ -57,5 +57,23 @@ namespace OrderFlowBot.Tests
             Assert.False(longResult);
             Assert.False(shortResult);
         }
+
+        [Fact]
+        public void All_Strategies_Should_Inherit_From_StrategyBase()
+        {
+            // Arrange & Act
+            var stackedImbalances = new StackedImbalances(_eventsContainer);
+            var volumeSequencing = new VolumeSequencing(_eventsContainer);
+            var deltaDivergence = new DeltaDivergence(_eventsContainer);
+
+            // Assert
+            Assert.NotNull(stackedImbalances.StrategyData);
+            Assert.NotNull(volumeSequencing.StrategyData);
+            Assert.NotNull(deltaDivergence.StrategyData);
+            
+            Assert.Equal("Stacked Imbalances", stackedImbalances.StrategyData.Name);
+            Assert.Equal("Volume Sequencing", volumeSequencing.StrategyData.Name);
+            Assert.Equal("Delta Divergence", deltaDivergence.StrategyData.Name);
+        }
     }
 }
