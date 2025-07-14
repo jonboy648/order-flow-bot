@@ -2,3 +2,6 @@
 order-flow-bot.sln
 Tests/bin
 Tests/obj
+bin/
+obj/
+*.log
